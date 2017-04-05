@@ -1,0 +1,21 @@
+1) awk -F ":" '{print$2}' list.list
+
+2) awk -F ":" '$1 ~ /^Dan/ {print $2}' list.list
+
+3) awk -F ":" '$1 ~ /^Susan/ {print $1,$2}' list.list
+
+4) awk -F ":" '$1 ~ / D(.*)$/ {print substr($1,index($1," ")+1,length($1))}' list.list
+   awk -F ":" '{print $1}' list.list | awk -F " " '$2 ~ /^D/ {print $0}'
+
+5) awk -F ":" '$1 ~ /^[cC|eE]/ {print substr($1,0,index($1," ")+1)}' list.list
+   awk -F ":" '{print $1}' list.list | awk -F " " '$1 ~ /^[cC|eE]/ {print $1}'
+
+6) awk -F ":" '$1 ~ /^.... (.*)$/ {print substr($1,0,index($1," ")+1)}' list.list
+   awk -F ":" '{print $1}' list.list | awk -F " " '$1 ~ /^....$/ {print $1}'
+
+7) awk -F":" '$2 ~ /^\(916\)/ {print substr($1,0,index($1," ")+1)}' list.list
+   awk -F ":" '$2 ~ /^\(916\)/ {print $1}' list.list | awk -F " " '{print $1}'
+
+8) awk -F":" '$2 ~ /^\(916\)/ {print substr($1,0,index($1," ")+1)}' list.list
+
+9) awk -F ":" '{print $1}' list.list | awk -F " " '{printf("%s,%s\n",$2,$1)}'
